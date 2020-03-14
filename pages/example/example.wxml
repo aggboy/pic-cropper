@@ -1,0 +1,38 @@
+<view class="wrapper" wx:if='{{!show_condition}}'>
+
+  <view bindtap="selectImg" class="btn">相机区域拍照</view>
+
+</view>
+
+ <view  wx:if='{{firstCanvasMiddleImg.length>0}}' >
+  <view>生成图片</view>
+  <image src='{{firstCanvasMiddleImg}}'></image>
+</view>
+
+
+
+
+<view class="my-camera-box" wx:if='{{show_condition}}'>
+  <view class='index-hd' id='camera_index'>
+    <camera mode="normal" device-position="back" flash="on" frame-size='large' resolution='high' binderror="error" style="width:{{cwidth}}px; height:{{cheight}}px;">
+      <cover-view class="controls">
+        <cover-image wx:if="{{objectKey==zhengMIAN}}" class="img" src="{{outImg}}" style="position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);width: 261px;height: 413px;"  />
+
+      </cover-view>
+
+
+    </camera>
+    <cover-view class="btn-box" style="width:{{cwidth}}px; height:{{cheight}}px;">
+      <button type='primary' size='default' bindtap='take_photo' class='upload_btn'>拍照</button>
+      <button style="margin-top:10rpx;" type='warn' size='default' bindtap='back_index' class='upload_btn3'>返回</button>
+
+    </cover-view>
+
+
+  </view>
+
+  <canvas class="no-canvas" style="marginTop:500px;width:{{cwidth}}px; height:{{cheight}}px;background:#ccc" canvas-id="firstCanvas"></canvas>
+
+  <canvas class="no-canvas" style="marginTop:500px;width:{{secondCanvasWidth}}px; height:{{secondCanvasHeight}}px;background:#ccc" canvas-id="secondCanvas"></canvas>
+    <image wx:if='{{firstCanvasMiddleImg.length>0}}' src='{{firstCanvasMiddleImg}}' bindload='setWidth'></image>
+</view>
